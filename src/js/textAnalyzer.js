@@ -1,4 +1,4 @@
-import { updateCountDisplay } from "./uiHandler";
+import { letterArray, updateCountDisplay, updateSlider } from "./uiHandler";
 
 export function readCharacters(input) {
   let characters = input;
@@ -44,4 +44,30 @@ export function calculateReadingTime(wordCount) {
     return "Approx. reading time: <1 minute";
   }
   return `Approx. reading time: ~${time} minutes`;
+}
+
+export function appendLetterArray(input) {
+  input = input.trim().toUpperCase();
+  const characterCount = input.length;
+  const characterDict = {};
+
+  for (const char of input) {
+    if (!/[a-zA-Z]/.test(char)) {
+      continue;
+    }
+    if (char in characterDict) {
+      characterDict[char] += 1;
+    } else {
+      characterDict[char] = 1;
+    }
+  }
+
+  for (const char in characterDict) {
+    const letterObject = {
+      character: char,
+      count: characterDict[char],
+      density: ((characterDict[char] / characterCount) * 100).toFixed(2) + "%",
+    };
+    letterArray.push(letterObject);
+  }
 }

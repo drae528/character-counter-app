@@ -84,51 +84,9 @@
       </div>
     </div>
 
-    <div class="[ w-full max-w-[56rem] mt-8 ] [ grid grid-cols-1 gap-3 ]">
-      <div class="[ flex gap-6 items-center ]">
-        <p>E</p>
-        <input
-          class="slider [ appearance-none grow-1 ]"
-          type="range"
-          min="0"
-          max="100"
-          value="0"
-        />
-        <p class="density [ ml-auto ]">40(16.09%)</p>
-      </div>
-      <div class="[ flex gap-6 items-center ]">
-        <p>E</p>
-        <input
-          class="slider [ appearance-none grow-1 ]"
-          type="range"
-          min="0"
-          max="100"
-          value="0"
-        />
-        <p class="density [ ml-auto ]">40(16.09%)</p>
-      </div>
-    </div>
-
-    <script>
-      const sliders = document.querySelectorAll(".slider");
-
-      function updateSlider(slider, val) {
-        const percent = ((val - slider.min) / (slider.max - slider.min)) * 100;
-        const theme = document.documentElement.classList.contains("dark")
-          ? "dark"
-          : "light";
-        const trackColor = theme === "dark" ? "#171717" : "#e5e5e5";
-
-        slider.style.background = `linear-gradient(to right, #925cff ${percent}%, ${trackColor} ${percent}%)`;
-      }
-
-      sliders.forEach((slider) => {
-        updateSlider(slider, slider.value);
-
-        slider.addEventListener("input", (e) => {
-          updateSlider(e.target, e.target.value);
-        });
-      });
-    </script>
+    <div
+      class="[ w-full max-w-[56rem] mt-8 ] [ grid grid-cols-1 gap-3 ]"
+      id="densityDisplay"
+    ></div>
   </body>
 </html>

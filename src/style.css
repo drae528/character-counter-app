@@ -25,7 +25,7 @@ body {
 
 /* slider */
 .slider {
-  @apply h-3 rounded-full;
+  @apply h-3  rounded-full;
 }
 
 .slider::-webkit-slider-thumb {
