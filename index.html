@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script src="themeToggle.js"></script>
+    <script type="module" src="/src/main.js" defer></script>
+    <title>Character Counter | Frontend Mentor</title>
+  </head>
+
+  <body
+    class="[ grid place-items-center p-6 ] [ bg-noise-dark dark:text-neutral-100 text-neutral-900 ]"
+  >
+    <header class="[ w-full max-w-[56rem] ] [ mb-10 ] [ flex items-center ]">
+      <img class="h-10 mr-1" src="/public/assets/logo.svg" alt="logo" />
+      <h2 class="text-md font-medium">Character Counter</h2>
+      <button
+        class="[ h-10 w-10 ml-auto rounded-xl ] [ bg-neutral-200 dark:bg-neutral-900 focus:outline-none hover:cursor-pointer ]"
+        id="themeBtn"
+        onclick="setTheme()"
+      >
+        <i
+          class="bi bi-brightness-high [ text-xl ] [ dark:text-neutral-100 ]"
+        ></i>
+      </button>
+    </header>
+
+    <h1 class="text-center text-[2rem] font-semibold leading-snug">
+      Analyze your text in real-time.
+    </h1>
+
+    <div class="[ w-full max-w-[56rem] mt-6 ]">
+      <textarea
+        class="[ resize-none w-full h-38 rounded-lg ] [ p-4 ] [ bg-neutral-200 dark:bg-neutral-900 border-1 border-neutral-400 dark:border-neutral-800 caret-violet-500 selection:bg-violet-500 focus:outline-none ]"
+        id="inputArea"
+        maxlength="1000"
+      ></textarea>
+      <div
+        class="[ mt-2 ] [ flex flex-col sm:flex-row gap-2 text-sm font-thin ]"
+      >
+        <label class="[ flex items-center select-none ]" for="excludeSpaces">
+          <input
+            class="[ appearance-none relative h-5 w-5 mr-2 rounded-md ] [ bg-none checked:bg-violet-500 border-1 border-neutral-800 ]"
+            id="excludeSpacesBtn"
+            type="checkbox"
+          />
+          Exclude Spaces
+        </label>
+        <label class="[ flex items-center select-none ]" for="characterLimit">
+          <input
+            class="[ appearance-none relative h-5 w-5 mr-2 rounded-md ] [ bg-none checked:bg-violet-500 border-1 border-neutral-800 ]"
+            id="characterLimitBtn"
+            type="checkbox"
+          />
+          Character Limit
+        </label>
+        <p class="sm:ml-auto select-none" id="readingTimeEl">
+          Approx. reading time:
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="[ w-full max-w-[56rem] mt-12 ] [ grid grid-cols-1 sm:grid-cols-3 gap-4 text-xl select-none ] [ dark:text-neutral-800 ]"
+    >
+      <div
+        class="[ w-full h-30 rounded-lg ] [ flex flex-col justify-center p-4 ] [ bg-linear-to-r from-violet-500 to-violet-400 drop-shadow-lg drop-shadow-neutral-400 dark:drop-shadow-none ]"
+      >
+        <p class="mb-2 text-4xl font-semibold" id="characterCountEl">000</p>
+        <p>Total Characters</p>
+      </div>
+      <div
+        class="[ w-full h-30 rounded-lg ] [ flex flex-col justify-center p-4 ] [ bg-linear-to-r bg-orange-500 to-orange-400 drop-shadow-lg drop-shadow-neutral-400 dark:drop-shadow-none ]"
+      >
+        <p class="mb-2 text-4xl font-semibold" id="wordCountEl">000</p>
+        <p>Word Count</p>
+      </div>
+      <div
+        class="[ w-full h-30 rounded-lg ] [ flex flex-col justify-center p-4 ] [ bg-linear-to-r bg-red-500 to-red-400 drop-shadow-lg drop-shadow-neutral-400 dark:drop-shadow-none ]"
+      >
+        <p class="mb-2 text-4xl font-semibold" id="sentenceCountEl">000</p>
+        <p>Sentence Count</p>
+      </div>
+    </div>
+
+    <div class="[ w-full max-w-[56rem] mt-8 ] [ grid grid-cols-1 gap-3 ]">
+      <div class="[ flex gap-6 items-center ]">
+        <p>E</p>
+        <input
+          class="slider [ appearance-none grow-1 ]"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        />
+        <p class="density [ ml-auto ]">40(16.09%)</p>
+      </div>
+      <div class="[ flex gap-6 items-center ]">
+        <p>E</p>
+        <input
+          class="slider [ appearance-none grow-1 ]"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        />
+        <p class="density [ ml-auto ]">40(16.09%)</p>
+      </div>
+    </div>
+
+    <script>
+      const sliders = document.querySelectorAll(".slider");
+
+      function updateSlider(slider, val) {
+        const percent = ((val - slider.min) / (slider.max - slider.min)) * 100;
+        const theme = document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        const trackColor = theme === "dark" ? "#171717" : "#e5e5e5";
+
+        slider.style.background = `linear-gradient(to right, #925cff ${percent}%, ${trackColor} ${percent}%)`;
+      }
+
+      sliders.forEach((slider) => {
+        updateSlider(slider, slider.value);
+
+        slider.addEventListener("input", (e) => {
+          updateSlider(e.target, e.target.value);
+        });
+      });
+    </script>
+  </body>
+</html>

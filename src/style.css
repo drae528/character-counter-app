@@ -1,0 +1,39 @@
+@import url("/public/bootstrap/bootstrap-icons.css");
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Inter";
+  src: url("/public/assets/fonts/Inter/static/Inter_18pt-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "Inter", Helvetica, sans-serif;
+}
+
+/* noise bg */
+.bg-noise-dark {
+  background-image: url("/public/assets/noise-dark.png");
+  background-size: 100%;
+}
+.bg-noise-light {
+  background-image: url("/public/assets/noise-light.png");
+  background-size: 100%;
+}
+
+/* slider */
+.slider {
+  @apply h-3 rounded-full;
+}
+
+.slider::-webkit-slider-thumb {
+  visibility: hidden;
+}
+.slider::-moz-range-thumb {
+  visibility: hidden;
+}
+.slider::-ms-thumb {
+  visibility: hidden;
+}
