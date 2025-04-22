@@ -25,7 +25,7 @@ body {
 
 /* slider */
 .slider {
-  @apply h-3  rounded-full;
+  @apply h-3 rounded-full;
 }
 
 .slider::-webkit-slider-thumb {
@@ -36,4 +36,17 @@ body {
 }
 .slider::-ms-thumb {
   visibility: hidden;
+}
+
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+::-webkit-scrollbar-track {
+  @apply bg-neutral-800;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-neutral-700;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-600;
 }

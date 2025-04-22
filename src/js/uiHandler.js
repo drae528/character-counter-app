@@ -15,7 +15,7 @@ const characterCountEl = document.getElementById("characterCountEl");
 const wordCountEl = document.getElementById("wordCountEl");
 const sentenceCountEl = document.getElementById("sentenceCountEl");
 const densityDisplay = document.getElementById("densityDisplay");
-const sliders = document.querySelectorAll(".slider");
+const showMoreBtn = document.getElementById("showMoreBtn");
 
 let typingTimer;
 export let letterArray = [];
@@ -53,10 +53,22 @@ export function updateDensityDisplay(input) {
   densityDisplay.innerHTML = "";
   letterArray = [];
   appendLetterArray(input);
-  letterArray.forEach((obj) => {
+
+  letterArray.forEach((obj, index) => {
     let letter = createLetterDisplay(obj);
+
+    if (index >= 5) {
+      letter.classList.add("hidden");
+    }
+
     densityDisplay.appendChild(letter);
   });
+
+  if (letterArray.length > 5) {
+    showMoreBtn.classList.remove("hidden");
+  } else {
+    showMoreBtn.classList.add("hidden");
+  }
 }
 
 function createLetterDisplay(obj) {
@@ -66,7 +78,7 @@ function createLetterDisplay(obj) {
   const densityValue = parseFloat(density);
 
   const letter = document.createElement("div");
-  letter.className = "[ flex items-center ]";
+  letter.className = "letterDisplay [ h-6 ] [ flex items-center ]";
   letter.innerHTML = `
   <p class="w-6">${character}</p>
   <input
@@ -76,7 +88,7 @@ function createLetterDisplay(obj) {
     max="100"
     value="${densityValue}"
   />
-  <p class="[ w-24 ] [ text-right ]">${count} (${density})</p>
+  <p class="[ w-24 ] [ text-right text-nowrap ]">${count} (${density})</p>
   `;
 
   const slider = letter.querySelector(".slider");
@@ -99,11 +111,34 @@ excludeSpacesBtn.addEventListener("change", () => {
   const input = inputArea.value;
   if (input.trim() !== "" && input) {
     updateCountDisplay(input);
+    updateDensityDisplay(input);
   }
 });
 characterLimitBtn.addEventListener("change", () => {
   const input = inputArea.value;
   if (input.trim() !== "" && input) {
     setCharacterLimit(input);
+  }
+});
+
+showMoreBtn.addEventListener("click", () => {
+  const currentLetterDisplays = document.querySelectorAll(".letterDisplay");
+
+  if (showMoreBtn.querySelector("i").classList.contains("bi-chevron-down")) {
+    currentLetterDisplays.forEach((child) => child.classList.remove("hidden"));
+
+    showMoreBtn
+      .querySelector("i")
+      .classList.replace("bi-chevron-down", "bi-chevron-up");
+  } else {
+    currentLetterDisplays.forEach((child, index) => {
+      if (index >= 5) {
+        child.classList.add("hidden");
+      }
+    });
+
+    showMoreBtn
+      .querySelector("i")
+      .classList.replace("bi-chevron-up", "bi-chevron-down");
   }
 });

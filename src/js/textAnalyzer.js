@@ -1,4 +1,8 @@
-import { letterArray, updateCountDisplay, updateSlider } from "./uiHandler";
+import {
+  letterArray,
+  updateCountDisplay,
+  updateDensityDisplay,
+} from "./uiHandler";
 
 export function readCharacters(input) {
   let characters = input;
@@ -36,6 +40,7 @@ export function setCharacterLimit(input) {
     inputArea.value = inputArea.value.slice(0, 250);
   }
   updateCountDisplay(inputArea.value);
+  updateDensityDisplay(inputArea.value);
 }
 
 export function calculateReadingTime(wordCount) {
