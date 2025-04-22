@@ -15,5 +15,15 @@ a simple web-based character counter that calculates your character count, word 
 - css/tailwindcss
 - javascript
 - vite
+- bootstrap icons
 
 ## install
+
+- clone repo https://github.com/drae528/character-counter-app.git
+- run 'npm install'
+- run 'npm run dev'
+
+## credits
+
+i built this based on a frontend mentor challenge
+https://www.frontendmentor.io/challenges/character-counter-znSgeWs_i6
