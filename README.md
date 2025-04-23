@@ -25,5 +25,5 @@ a simple web-based character counter that calculates your character count, word 
 
 ## credits
 
-i built this based on a frontend mentor challenge
+built based on this frontend mentor challenge
 https://www.frontendmentor.io/challenges/character-counter-znSgeWs_i6
